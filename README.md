@@ -1,158 +1,83 @@
-# Foundation: An Economic Simulation Framework
+# Universal Basic Income Simulation Using RL
 
-This repo contains an implementation of Foundation, a framework for flexible, modular, and composable environments that **model socio-economic behaviors and dynamics in a society with both agents and governments**.
+## Introduction:
 
-Foundation provides a [Gym](https://gym.openai.com/)-style API:
+With the recent advancements in the field of AI, there is an ongoing debate of AIs replacing
+humans in most of the jobs that exist today. With this situation, it will become important for
+the government to support unemployed people by providing them with a universal basic
+income(UBI) .
+The project aimed at simulating an economy to study the effect of the introduction of AI
+agents in a world.Our target is to find how agents will react with the introduction of AI agents
+and to find the optimal value of UBI income that the government should provide to sustain all
+the people in the economy.
 
-- `reset`: resets the environment's state and returns the observation.
-- `step`: advances the environment by one timestep, and returns the tuple *(observation, reward, done, info)*.
+** for deeper understanding for our project , you can check [Readme_from_ai_economist](/Readme_from_ai_economist/README.md) folder and our report [Univeral Basic Income Simulation Using RL doc b19147 b19231 b19011.pdf](Univeral%20Basic%20Income%20Simulation%20Using%20RL%20doc%20b19147%20b19231%20b19011.pdf). 
 
-This simulation can be used in conjunction with reinforcement learning to learn optimal economic policies, as detailed in the following papers:
 
-**[The AI Economist: Improving Equality and Productivity with AI-Driven Tax Policies](https://arxiv.org/abs/2004.13332)**,
-*Stephan Zheng, Alexander Trott, Sunil Srinivasa, Nikhil Naik, Melvin Gruesbeck, David C. Parkes, Richard Socher.*
+## Getting started:
 
-**[The AI Economist: Optimal Economic Policy Design via Two-level Deep Reinforcement Learning](https://arxiv.org/abs/2108.02755)**
-*Stephan Zheng, Alexander Trott, Sunil Srinivasa, David C. Parkes, Richard Socher.*
-
-**[Building a Foundation for Data-Driven, Interpretable, and Robust Policy Design using the AI Economist](https://arxiv.org/abs/2108.02904)**
-*Alexander Trott, Sunil Srinivasa, Douwe van der Wal, Sebastien Haneuse, Stephan Zheng.*
-
-If you use this code in your research, please cite us using this BibTeX entry:
-
-```
-@misc{2004.13332,
- Author = {Stephan Zheng, Alexander Trott, Sunil Srinivasa, Nikhil Naik, Melvin Gruesbeck, David C. Parkes, Richard Socher},
- Title = {The AI Economist: Improving Equality and Productivity with AI-Driven Tax Policies},
- Year = {2020},
- Eprint = {arXiv:2004.13332},
-}
-```
-
-For more information and context, check out:
-
-- [The AI Economist website](https://www.einstein.ai/the-ai-economist)
-- [Blog: The AI Economist: Improving Equality and Productivity with AI-Driven Tax Policies](https://blog.einstein.ai/the-ai-economist/)
-- [Blog: The AI Economist moonshot](https://blog.einstein.ai/the-ai-economist-moonshot/)
-- [Blog: The AI Economist web demo of the COVID-19 case study](https://blog.einstein.ai/ai-economist-covid-case-study-ethics/)
-- [Web demo: The AI Economist ethical review of AI policy design and COVID-19 case study](https://einstein.ai/the-ai-economist/ai-policy-foundation-and-covid-case-study)
-
-## Simulation Cards: Ethics Review and Intended Use
-
-Please see our [Simulation Card](https://github.com/salesforce/ai-economist/blob/master/Simulation_Card_Foundation_Economic_Simulation_Framework.pdf) for a review of the intended use and ethical review of our framework.
-
-Please see our [COVID-19 Simulation Card](https://github.com/salesforce/ai-economist/blob/master/COVID-19_Simulation-Card.pdf) for a review of the ethical aspects of the pandemic simulation (and as fitted for COVID-19).
-
-## Join us on Slack
-
-If you're interested in extending this framework, discussing machine learning for economics, and collaborating on research project:
-
-- join our Slack channel [aieconomist.slack.com](https://aieconomist.slack.com) using this [invite link](https://join.slack.com/t/aieconomist/shared_invite/zt-g71ajic7-XaMygwNIup~CCzaR1T0wgA), or
-- email us @ ai.economist@salesforce.com.
-
-## Installation Instructions
-
-To get started, you'll need to have Python 3.7+ installed.
-
-### Using pip
-
-Simply use the Python package manager:
-
-```python
-pip install ai-economist
-```
-
-### Installing from Source
+### Installing from Source:
 
 1. Clone this repository to your local machine:
 
   ```
-   git clone www.github.com/salesforce/ai-economist
+   git clone https://github.com/pongthang/ubi-simulation-using-rl.git
    ```
 
-2. Create a new conda environment (named "ai-economist" below - replace with anything else) and activate it
+   2. Create a new conda environment (named "ubi-simulation-using-rl" below - replace with anything else) and activate it
 
   ```pyfunctiontypecomment
-   conda create --name ai-economist python=3.7 --yes
-   conda activate ai-economist
+   conda create --name ubi-simulation-using-rl python=3.7 --yes
+   conda activate ubi-simulation-using-rl
    ```
 
 3. Either
 
-   a) Edit the PYTHONPATH to include the ai-economist directory
+   a) Edit the PYTHONPATH to include the ubi-simulation-using-rl directory
   ```
-   export PYTHONPATH=<local path to ai-economist>:$PYTHONPATH
+   export PYTHONPATH=<local path to ubi-simulation-using-rl>:$PYTHONPATH
    ```
 
    OR
 
    b) Install as an editable Python package
   ```pyfunctiontypecomment
-   cd ai-economist
-   pip install -e .
+   cd ubi-simulation-using-rl
+   pip3 install -e .
    ```
-
-Useful tip: for quick access, add the following to your ~/.bashrc or ~/.bash_profile:
-
-```pyfunctiontypecomment
-alias aiecon="conda activate ai-economist; cd <local path to ai-economist>"
-```
-
-You can then simply run `aiecon` once to activate the conda environment.
-
-### Testing your Install
+   ### Testing your Install
 
 To test your installation, try running:
 
 ```
-conda activate ai-economist
-python -c "import ai_economist"
+conda activate ubi-simulation-using-rl
+python3 -c "import ai_economist"
 ```
 
-## Getting Started
+## About the simulation:
+There will be 4 agents. And one agent who will act as governor. 4 agents will earn money. Governor agent will collect taxes and distribute as UBI.
+## How to train the RL agent
 
-To familiarize yourself with Foundation, check out the tutorials in the `tutorials` folder. You can run these notebooks interactively in your browser on Google Colab.
+There are two steps:
+* First you need to train the agents are trained without governor in order to explore what they can do - earning money by collecting woods, building house etc. This simulation part is called "Free Market".
 
-### Multi-Agent Simulations
+```
+conda activate ubi-simulation-using-rl
+cd ubi-simulation-using-rl/tutorials/rllib/
+python3 training_script.py --run-dir phase1
+```
+Here phase1 directory contains the configuration files and a folder called "ckpts" where the trained model checkpoints are being saved. 
 
-- [economic_simulation_basic](https://www.github.com/salesforce/ai-economist/blob/master/tutorials/economic_simulation_basic.ipynb) ([Try this on Colab](http://colab.research.google.com/github/salesforce/ai-economist/blob/master/tutorials/economic_simulation_basic.ipynb)!): Shows how to interact with and visualize the simulation.
-- [economic_simulation_advanced](https://www.github.com/salesforce/ai-economist/blob/master/tutorials/economic_simulation_advanced.ipynb) ([Try this on Colab](http://colab.research.google.com/github/salesforce/ai-economist/blob/master/tutorials/economic_simulation_advanced.ipynb)!): Explains how Foundation is built up using composable and flexible building blocks.
-- [optimal_taxation_theory_and_simulation](https://github.com/salesforce/ai-economist/blob/master/tutorials/optimal_taxation_theory_and_simulation.ipynb) ([Try this on Colab](https://colab.research.google.com/github/salesforce/ai-economist/blob/master/tutorials/optimal_taxation_theory_and_simulation.ipynb)!): Demonstrates how economic simulations can be used to study the problem of optimal taxation.
-- [covid19_and_economic_simulation](https://www.github.com/salesforce/ai-economist/blob/master/tutorials/covid19_and_economic_simulation.ipynb) ([Try this on Colab](http://colab.research.google.com/github/salesforce/ai-economist/blob/master/tutorials/covid19_and_economic_simulation.ipynb)!): Introduces a simulation on the COVID-19 pandemic and economy that can be used to study different health and economic policies .
+* Then the we use the last checkpoint of the model in the next simulation - 4 agents and 1 governor where taxes are introduced.
+Corresponding configuration of simulation are written in phase2 folder.
 
-### Multi-Agent Training
-- [multi_agent_gpu_training_with_warp_drive](https://github.com/salesforce/ai-economist/blob/master/tutorials/multi_agent_gpu_training_with_warp_drive.ipynb) ([Try this on Colab](http://colab.research.google.com/github/salesforce/ai-economist/blob/master/tutorials/multi_agent_gpu_training_with_warp_drive.ipynb)!): Introduces our multi-agent reinforcement learning framework [WarpDrive](https://arxiv.org/abs/2108.13976), which we then use to train the COVID-19 and economic simulation.
-- [multi_agent_training_with_rllib](https://github.com/salesforce/ai-economist/blob/master/tutorials/multi_agent_training_with_rllib.ipynb) ([Try this on Colab](http://colab.research.google.com/github/salesforce/ai-economist/blob/master/tutorials/multi_agent_training_with_rllib.ipynb)!): Shows how to perform distributed multi-agent reinforcement learning with [RLlib](https://docs.ray.io/en/latest/rllib/index.html).
-- [two_level_curriculum_training_with_rllib](https://github.com/salesforce/ai-economist/blob/master/tutorials/two_level_curriculum_learning_with_rllib.md): Describes how to implement two-level curriculum training with [RLlib](https://docs.ray.io/en/latest/rllib/index.html).
+```
+conda activate ubi-simulation-using-rl
+cd ubi-simulation-using-rl/tutorials/rllib/
+python3 training_script.py --run-dir phase2
+```
 
-To run these notebooks *locally*, you need [Jupyter](https://jupyter.org). See [https://jupyter.readthedocs.io/en/latest/install.html](https://jupyter.readthedocs.io/en/latest/install.html) for installation instructions and [(https://jupyter-notebook.readthedocs.io/en/stable/](https://jupyter-notebook.readthedocs.io/en/stable/) for examples of how to work with Jupyter.
+## Results:
 
-## Structure of the Code
-
-- The simulation is located in the `ai_economist/foundation` folder.
-
-The code repository is organized into the following components:
-
-| Component | Description |
-| --- | --- |
-| [base](https://www.github.com/salesforce/ai-economist/blob/master/ai_economist/foundation/base) | Contains base classes to can be extended to define Agents, Components and Scenarios. |
-| [agents](https://www.github.com/salesforce/ai-economist/blob/master/ai_economist/foundation/agents) | Agents represent economic actors in the environment. Currently, we have mobile Agents (representing workers) and a social planner (representing a government). |
-| [entities](https://www.github.com/salesforce/ai-economist/blob/master/ai_economist/foundation/entities) | Endogenous and exogenous components of the environment. Endogenous entities include labor, while exogenous entity includes landmarks (such as Water and Grass) and collectible Resources (such as Wood and Stone). |
-| [components](https://www.github.com/salesforce/ai-economist/blob/master/ai_economist/foundation/components) | Components are used to add some particular dynamics to an environment. They also add action spaces that define how Agents can interact with the environment via the Component. |
-| [scenarios](https://www.github.com/salesforce/ai-economist/blob/master/ai_economist/foundation/scenarios) | Scenarios compose Components to define the dynamics of the world. It also computes rewards and exposes states for visualization. |
-
-- The datasets (including the real-world data on COVID-19) are located in the `ai_economist/datasets` folder.
-
-## Releases and Contributing
-
-- Please let us know if you encounter any bugs by filing a GitHub issue.
-- We appreciate all your contributions. If you plan to contribute new Components, Scenarios Entities, or anything else, please see our [contribution guidelines](https://www.github.com/salesforce/ai-economist/blob/master/CONTRIBUTING.md).
-
-## Changelog
-
-For the complete release history, see [CHANGELOG.md](https://www.github.com/salesforce/ai-economist/blob/master/CHANGELOG.md).
-
-## License
-
-Foundation and the AI Economist are released under the [BSD-3 License](LICENSE.txt).
-
+Check the results by plotting. Use the jupyter notebook 
+[plot_your_results.ipynb](/tutorials/plot_your_results.ipynb) in the "tutorials" folder to see the output of the RL model.
