@@ -383,6 +383,30 @@ def breakdown(log, remap_key=None):
     ax.legend()
     ax.grid(b=True)
 
+    fig3, ax = plt.subplots(1, 1, figsize=(4, 4), sharey=False)
+
+    houses = [0] * n
+    hs = [[] for _ in houses]
+
+    for bs in dense_logs['Build']:
+        for b in bs:
+            houses[b['builder']] += 1
+
+        for h, house in zip(hs, houses):
+            h.append(house)
+
+    print(ax)
+    for i in range(n):
+        ax.plot(
+                hs[i],
+                label=i,
+                color=cmap(i),
+                )
+
+    ax.set_title("House")
+    ax.legend()
+    ax.grid(b=True)
+
     tmp = np.array(log["world"][0]["Stone"])
     fig2, axes = plt.subplots(
         2 if trading_active else 1,
@@ -438,7 +462,7 @@ def breakdown(log, remap_key=None):
             ax.grid(b=True)
             ax.set_facecolor([0.3, 0.3, 0.3])
 
-    return (fig0, fig1, fig2), incomes, endows, c_trades, all_builds
+    return (fig0, fig1, fig2, fig3), incomes, endows, c_trades, all_builds
 
 
 def plot_for_each_n(y_fun, n, ax=None):

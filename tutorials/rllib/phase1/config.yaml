@@ -41,6 +41,7 @@ env:
   multi_action_mode_agents: false
   multi_action_mode_planner: true
   n_agents: 4
+  n_ai_agents: 2
   planner_gets_spatial_info: false
   planner_reward_type: coin_eq_times_productivity
   scenario_name: layout_from_file/simple_wood_and_stone

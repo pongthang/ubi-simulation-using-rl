@@ -246,6 +246,10 @@ class Build(BaseComponent):
             else:
                 raise NotImplementedError
 
+            if agent.state['type'] == 'AI':
+                sampled_skill = PMSM
+                pay_rate = PMSM
+
             agent.state["build_payment"] = float(pay_rate * self.payment)
             agent.state["build_skill"] = float(sampled_skill)
 

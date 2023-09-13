@@ -13,6 +13,7 @@ import time
 import ray
 from utils import remote, saving
 import tf_models
+import fcnet
 import yaml
 from env_wrapper import RLlibEnvWrapper
 from ray.rllib.agents.ppo import PPOTrainer

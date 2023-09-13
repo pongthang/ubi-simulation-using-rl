@@ -179,6 +179,7 @@ class BaseEnvironment(ABC):
         self,
         components=None,
         n_agents=None,
+        n_ai_agents=0,
         world_size=None,
         episode_length=1000,
         multi_action_mode_agents=False,
@@ -222,6 +223,9 @@ class BaseEnvironment(ABC):
         assert isinstance(n_agents, int)
         assert n_agents >= 2
         self.n_agents = n_agents
+
+        assert n_ai_agents <= n_agents
+        self.n_ai_agents = n_ai_agents
 
         # Foundation assumes there's only a single planner
         n_planners = 1
@@ -879,6 +883,15 @@ class BaseEnvironment(ABC):
                 float(seed_state[4]),
             )
             np.random.set_state(seed_state)
+
+        agents = self.world.agents
+        idx = np.arange(len(agents))
+        np.random.shuffle(idx)
+
+        for agent in agents:
+            agent.state['type'] = 'Normal'
+        for i in idx[:self.n_ai_agents]:
+            agents[i].state['type'] = 'AI'
 
         if force_dense_logging:
             self._dense_log_this_episode = True

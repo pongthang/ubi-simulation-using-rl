@@ -296,6 +296,7 @@ class PeriodicBracketTax(BaseComponent):
 
         # === tax cycle definitions ===
         self.tax_cycle_pos = 1
+        self.episode_step = 1
         self.last_coin = [0 for _ in range(self.n_agents)]
         self.last_income = [0 for _ in range(self.n_agents)]
         self.last_marginal_rate = [0 for _ in range(self.n_agents)]
@@ -950,7 +951,7 @@ class PeriodicBracketTax(BaseComponent):
         """
 
         # 1. On the first day of a new tax period: Set up the taxes for this period.
-        if self.tax_cycle_pos == 1:
+        if self.episode_step == 1:
             if self.tax_model == "model_wrapper":
                 self.set_new_period_rates_model()
 
@@ -970,6 +971,7 @@ class PeriodicBracketTax(BaseComponent):
 
         # increment timestep.
         self.tax_cycle_pos += 1
+        self.episode_step += 1
 
     def generate_observations(self):
         """
@@ -1115,6 +1117,7 @@ class PeriodicBracketTax(BaseComponent):
         self.curr_rate_indices = [0 for _ in range(self.n_brackets)]
 
         self.tax_cycle_pos = 1
+        self.episode_step = 1
         self.last_coin = [
             float(agent.total_endowment("Coin")) for agent in self.world.agents
         ]

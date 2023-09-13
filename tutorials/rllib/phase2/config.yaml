@@ -42,6 +42,7 @@ env:
   multi_action_mode_agents: false
   multi_action_mode_planner: true
   n_agents: 4
+  n_ai_agents: 2
   planner_gets_spatial_info: false
   planner_reward_type: coin_eq_times_productivity
   scenario_name: layout_from_file/simple_wood_and_stone
@@ -50,12 +51,12 @@ env:
   - 25
   - 25
 general:
-  ckpt_frequency_steps: 20000000
+  ckpt_frequency_steps: 1000000
   cpus: 15
   episodes: 4000000
   gpus: 0
-  restore_tf_weights_agents: phase1/ckpts/agent.tf.weights.global-step-25000000 # path to phase 1 agent policy checkpoint
-  restore_tf_weights_planner: ''
+  restore_tf_weights_agents: phase1/ckpts/agent.tf.weights.global-step-25020000 # path to phase 1 agent policy checkpoint
+  restore_tf_weights_planner: ./ckpts/planner.one.ai.lstm.32640000
   train_planner: true
 agent_policy:
   clip_param: 0.3

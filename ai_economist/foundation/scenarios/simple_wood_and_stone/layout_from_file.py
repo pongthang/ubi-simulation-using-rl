@@ -189,6 +189,9 @@ class LayoutFromFile(BaseEnvironment):
             # The skill level of the i-th skill-ranked agent is the average of the
             # i-th ranked samples throughout the batch.
             average_ranked_skills = sorted_clipped_skills.mean(axis=0)
+            # AI agent skills
+            for i in range(self.n_ai_agents):
+                average_ranked_skills[-1-i] = pmsm + 1
             self._avg_ranked_skill = average_ranked_skills * bm.payment
 
             np.random.set_state(seed_state)
@@ -583,6 +586,9 @@ class LayoutFromFile(BaseEnvironment):
             self.world.clear_agent_locs()
             for i, agent in enumerate(self.world.get_random_order_agents()):
                 self.world.set_agent_loc(agent, *self._ranked_locs[i])
+
+            # set build_payment based on build_skills
+            for i, agent in enumerate(sorted(self.world.agents, key=lambda x: x.state['build_skill'])):
                 agent.state["build_payment"] = self._avg_ranked_skill[i]
 
         # compute current objectives

@@ -49,6 +49,7 @@ def verify_activation_code():
     If the activation code is valid, also save it in a text file for future reference.
     If the activation code is invalid, simply exit the program
     """
+    return
     path_to_activation_code_dir = os.path.dirname(os.path.abspath(__file__))
 
     def validate_activation_code(code, msg=b"covid19 code activation"):

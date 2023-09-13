@@ -128,7 +128,10 @@ class Gather(BaseComponent):
 
                 # If the agent did move, incur the labor cost of moving
                 if (new_r != r) or (new_c != c):
-                    agent.state["endogenous"]["Labor"] += self.move_labor
+                    if agent.state["type"] == 'AI':
+                        agent.state["endogenous"]["Labor"] += 0.25 * self.move_labor
+                    else:
+                        agent.state["endogenous"]["Labor"] += self.move_labor
 
             else:
                 raise ValueError
@@ -139,7 +142,10 @@ class Gather(BaseComponent):
                     agent.state["inventory"][resource] += n_gathered
                     world.consume_resource(resource, new_r, new_c)
                     # Incur the labor cost of collecting a resource
-                    agent.state["endogenous"]["Labor"] += self.collect_labor
+                    if agent.state["type"] == 'AI':
+                        agent.state["endogenous"]["Labor"] += 0.25 * self.collect_labor
+                    else:
+                        agent.state["endogenous"]["Labor"] += self.collect_labor
                     # Log the gather
                     gathers.append(
                         dict(
